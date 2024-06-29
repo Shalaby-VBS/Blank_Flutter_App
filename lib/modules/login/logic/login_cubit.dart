@@ -39,10 +39,10 @@ class LoginCubit extends Cubit<BaseState> {
     DioFactory.setTokenIntoHeaderAfterLogin(token);
   }
 
-  @override
-  Future<void> close() {
-    emailController.dispose();
-    passwordController.dispose();
-    return super.close();
-  }
+  // @override
+  // Future<void> close() {
+  //   emailController.dispose();
+  //   passwordController.dispose();
+  //   return super.close();
+  // }
 }
