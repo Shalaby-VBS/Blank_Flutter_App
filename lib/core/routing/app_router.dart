@@ -5,7 +5,7 @@ class AppRouter {
   GlobalKey<NavigatorState>();
   static BuildContext? currentContext = navigatorKey.currentContext;
   Route generateRoute(RouteSettings settings) {
-    // final arguments = settings.arguments;
+    final arguments = settings.arguments;
     switch (settings.name) {
       // case AppRoutes.homeScreen:
       //   return MaterialPageRoute(
