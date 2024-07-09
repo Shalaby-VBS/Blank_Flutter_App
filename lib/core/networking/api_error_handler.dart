@@ -1,6 +1,6 @@
+import 'package:blank_flutter_project/core/networking/api_errors.dart';
 import 'package:dio/dio.dart';
 
-import 'api_constants.dart';
 import 'api_error_model.dart';
 
 enum DataSource {
