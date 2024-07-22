@@ -5,9 +5,9 @@ class Initial extends BaseState {}
 class Loading extends BaseState {}
 
 class Success<T> extends BaseState {
-  final T data;
+  // final T data;
 
-  Success({required this.data});
+  // Success({required this.data});
 }
 
 class Error<T> extends BaseState {
