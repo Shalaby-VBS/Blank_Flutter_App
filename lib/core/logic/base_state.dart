@@ -11,7 +11,7 @@ class Success<T> extends BaseState {
 }
 
 class Error<T> extends BaseState {
-  // final T error;
+  final T error;
 
-  // Error({required this.error});
+  Error({required this.error});
 }
