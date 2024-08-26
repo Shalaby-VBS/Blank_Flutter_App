@@ -1,18 +1,17 @@
 sealed class BaseState {}
 
-class InitialState extends BaseState {}
+class Initial extends BaseState {}
 
-class LoadingState extends BaseState {}
+class Loading extends BaseState {}
 
-class SuccessState<T> extends BaseState {
+class Success<T> extends BaseState {
   final T data;
 
-  SuccessState(this.data);
+  Success({required this.data});
 }
 
-class ErrorState extends BaseState {
-  final String message;
-  final Exception? exception;
+class Error<T> extends BaseState {
+  final T error;
 
-  ErrorState(this.message, [this.exception]);
+  Error({required this.error});
 }
