@@ -10,4 +10,8 @@ class Success extends BaseStates {
   Success(this.data);
 }
 
-class Error extends BaseStates {}
+class Error extends BaseStates {
+  final String message;
+
+  Error(this.message);
+}
