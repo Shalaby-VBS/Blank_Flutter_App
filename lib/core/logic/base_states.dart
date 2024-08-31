@@ -4,14 +4,6 @@ class Initial extends BaseStates {}
 
 class Loading extends BaseStates {}
 
-class Success extends BaseStates {
-  final dynamic data;
+class Success extends BaseStates {}
 
-  Success(this.data);
-}
-
-class Error extends BaseStates {
-  final String message;
-
-  Error(this.message);
-}
+class Error extends BaseStates {}
