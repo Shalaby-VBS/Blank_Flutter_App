@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// Make navigation easy.
 extension Navigation on BuildContext {
   Future<dynamic> pushNamed(String routeName, {Object? arguments}) {
     return Navigator.of(this).pushNamed(routeName, arguments: arguments);
@@ -22,7 +21,6 @@ extension Navigation on BuildContext {
   }
 }
 
-// Converting Hex to Color.
 extension HexColor on Color {
   static Color fromHex(String hexColorString) {
     hexColorString = hexColorString.replaceAll('#', '');
