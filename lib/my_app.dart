@@ -1,3 +1,4 @@
+import 'package:blank_flutter_project/core/utils/app_utils.dart';
 import 'package:blank_flutter_project/modules/login/ui/login_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -17,16 +18,15 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       child: MaterialApp(
-        title: 'Localization Cubit',
+        title: 'My App',
         debugShowCheckedModeBanner: false,
         navigatorKey: AppRouter.navigatorKey,
         builder: (context, child) {
           return GestureDetector(
-            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+            onTap: () => AppUtils.closeKeyboard,
             child: MediaQuery(
-              data: MediaQuery.of(context).copyWith(
-                textScaler: const TextScaler.linear(1.0),
-              ),
+              data: MediaQuery.of(context)
+                  .copyWith(textScaler: const TextScaler.linear(1.0)),
               child: child!,
             ),
           );

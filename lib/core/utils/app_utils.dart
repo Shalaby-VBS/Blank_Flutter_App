@@ -7,13 +7,13 @@ class AppUtils {
   AppUtils._();
 
   static closeKeyboard(BuildContext context) =>
-    FocusScope.of(context).unfocus();
+      FocusScope.of(context).unfocus();
 
   static showBottomSheets(
-      BuildContext context,
-      Widget widget,
-      bool? isDismissible,
-      ) =>
+    BuildContext context,
+    Widget widget,
+    bool? isDismissible,
+  ) =>
       showModalBottomSheet(
         context: context,
         isScrollControlled: true,
@@ -36,7 +36,7 @@ class AppUtils {
               children: [
                 Padding(
                   padding:
-                  EdgeInsets.symmetric(vertical: 20.h, horizontal: 14.w),
+                      EdgeInsets.symmetric(vertical: 20.h, horizontal: 14.w),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -52,11 +52,11 @@ class AppUtils {
       );
 
   static showDialogs(
-      BuildContext context,
-      Widget widget,
-      Widget actions,
-      bool? isDismissible,
-      ) {
+    BuildContext context,
+    Widget widget,
+    Widget actions,
+    bool? isDismissible,
+  ) {
     return showDialog(
       context: context,
       barrierDismissible: false,
