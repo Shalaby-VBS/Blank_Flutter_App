@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
-
+import 'package:blank_flutter_project/modules/login/api/models/login_response.dart';
+import 'package:blank_flutter_project/modules/login/api/models/login_request_body.dart';
 import 'api_urls.dart';
 
 part 'api_service.g.dart';
@@ -9,6 +10,6 @@ part 'api_service.g.dart';
 abstract class ApiService {
   factory ApiService(Dio dio, {String baseUrl}) = _ApiService;
 
-// @POST(ApiConstants.login)
-// Future<LoginResponse> login(@Body() LoginRequestBody loginRequestBody);
+  @POST(ApiUrls.login)
+  Future<LoginResponse> login(@Body() LoginRequestBody loginRequestBody);
 }

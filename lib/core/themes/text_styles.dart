@@ -4,15 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TextStyles {
-  static TextStyle size12PrimaryRegular = TextStyle(
+  TextStyles._();
+
+  static final TextStyle size12PrimaryRegular = TextStyle(
     fontSize: 12.sp,
-    fontWeight: FontWeights.regular,
     color: AppColors.primary,
+    fontWeight: FontWeights.regular,
   );
 
-  static TextStyle size14GreyDarkW300 = TextStyle(
+  static final TextStyle size14GreyDarkLight = TextStyle(
     fontSize: 14.sp,
-    fontWeight: FontWeight.w300,
     color: AppColors.greyDark,
+    fontWeight: FontWeights.light,
+  );
+
+  static final TextStyle size16BlackRegular = TextStyle(
+    fontSize: 16.sp,
+    color: AppColors.black,
+    fontWeight: FontWeights.regular,
   );
 }

@@ -1,10 +1,12 @@
 class AppIcons {
   AppIcons._();
+  
   static const String iconsPath = 'assets/icons';
 }
 
 class AppImages {
   AppImages._();
+
   static const String imagesPath = 'assets/images';
   static const String arFlag = '$imagesPath/sa_flag.png';
   static const String enFlag = '$imagesPath/uk_flag.png';

@@ -1,13 +1,12 @@
 name: blank_flutter_project
 description: "A new Flutter project."
 
-publish_to: 'none'
+publish_to: "none"
 
 version: 1.0.0+1
 
 environment:
   sdk: ^3.5.1
-
 
 dependencies:
   flutter:
@@ -32,20 +31,21 @@ dependencies:
   retrofit:
   retrofit_generator:
   pretty_dio_logger:
+  flutter_secure_storage:
   # UI
   flutter_screenutil:
   cached_network_image:
   flutter_svg:
   lottie:
+  shimmer:
   # Data Storage
   shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner:        # dart run build_runner build
+  build_runner: # dart run build_runner build
   flutter_lints: ^4.0.0
-
 
 flutter:
   uses-material-design: true
@@ -54,7 +54,6 @@ flutter:
     - assets/icons/
     - assets/images/
     - assets/translations/
-
 #  fonts:
 #    - family: Kanit
 #      fonts:
