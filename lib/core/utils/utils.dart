@@ -3,8 +3,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AppUtils {
-  AppUtils._();
+class Utils {
+  Utils._();
 
   static closeKeyboard(BuildContext context) =>
       FocusScope.of(context).unfocus();

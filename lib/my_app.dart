@@ -1,4 +1,4 @@
-import 'package:blank_flutter_project/core/utils/app_utils.dart';
+import 'package:blank_flutter_project/core/utils/utils.dart';
 import 'package:blank_flutter_project/modules/login/ui/login_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +8,6 @@ import 'core/routing/app_router.dart';
 
 class MyApp extends StatelessWidget {
   final AppRouter appRouter;
-
   const MyApp({super.key, required this.appRouter});
 
   @override
@@ -23,7 +22,7 @@ class MyApp extends StatelessWidget {
         navigatorKey: AppRouter.navigatorKey,
         builder: (context, child) {
           return GestureDetector(
-            onTap: () => AppUtils.closeKeyboard,
+            onTap: () => Utils.closeKeyboard,
             child: MediaQuery(
               data: MediaQuery.of(context)
                   .copyWith(textScaler: const TextScaler.linear(1.0)),
