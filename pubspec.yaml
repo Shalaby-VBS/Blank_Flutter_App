@@ -40,6 +40,9 @@ dependencies:
   shimmer:
   # Data Storage
   shared_preferences: ^2.2.2
+  # Test
+  mocktail: ^0.3.0
+  bloc_test: ^9.0.0
 
 dev_dependencies:
   flutter_test:

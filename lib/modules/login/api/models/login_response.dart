@@ -1,8 +1,8 @@
 class LoginResponse {
   final String token;
-  final User user;
+  final User? user;
 
-  LoginResponse({required this.token, required this.user});
+  LoginResponse({required this.token, this.user});
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) {
     return LoginResponse(

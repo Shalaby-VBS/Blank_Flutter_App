@@ -1,3 +1,5 @@
+import 'package:blank_flutter_project/modules/login/api/repos/login_repo.dart';
+import 'package:blank_flutter_project/modules/login/logic/login_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -12,8 +14,9 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<ApiService>(() => ApiService(dio));
 
   // Login.
-  // getIt.registerLazySingleton<LoginRepo>(() => LoginRepo(getIt<ApiService>()));
-  // getIt.registerLazySingleton<LoginCubit>(() => LoginCubit(getIt<LoginRepo>()));
+  getIt.registerLazySingleton<LoginRepo>(() => LoginRepo(getIt<ApiService>()));
+  getIt.registerLazySingleton<LoginCubit>(() => LoginCubit(getIt<LoginRepo>()));
+
   // getIt.registerFactory<ToggleObscureTextCubit>(() => ToggleObscureTextCubit());
   // getIt.registerFactory<ToggleRememberMeCubit>(() => ToggleRememberMeCubit());
 }

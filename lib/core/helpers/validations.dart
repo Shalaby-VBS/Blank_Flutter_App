@@ -1,51 +1,36 @@
-import 'package:flutter/cupertino.dart';
+class Validations {
+  Validations._();
 
-import 'app_regexp.dart';
-
-abstract class Validations {
-  static String? validateName(BuildContext context, String? name) {
-    if (name!.isEmpty || !AppRegExp.isNameValid(name)) {
-      return '🔴Name is required!';
+  static String? validateEmail(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Email is required';
     }
+
+    final RegExp emailExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+    if (!emailExp.hasMatch(value)) {
+      return 'Please enter a valid email address';
+    }
+
     return null;
   }
 
-  static String? validateEmail(BuildContext context, String? email) {
-    if (email!.isEmpty || !AppRegExp.isEmailValid(email)) {
-      return '🔴Email is required!';
-    } else if (!email.contains('@')) {
-      return '🔴Invalid Email!';
+  static String? validatePassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Password is required';
     }
+
+    if (value.length < 6) {
+      return 'Password must be at least 6 characters long';
+    }
+
     return null;
   }
 
-  static String? validatePhoneNumber(BuildContext context, String? phoneNumber) {
-    if (phoneNumber!.isEmpty || !AppRegExp.isPhoneNumberValid(phoneNumber)) {
-      return '🔴Phone number is required!';
+  static String? validateRequiredField(String? value, String fieldName) {
+    if (value == null || value.isEmpty) {
+      return '$fieldName is required';
     }
-    return null;
-  }
 
-  static String? validatePassword(BuildContext context, String? password) {
-    if (password!.isEmpty || !AppRegExp.isPasswordValid(password)) {
-      return '🔴Password is required!';
-    }
-    return null;
-  }
-
-  static String? validateConfirmPassword(BuildContext context, String? password, String? confirmPassword) {
-    if (confirmPassword!.isEmpty || !AppRegExp.isPasswordValid(confirmPassword)) {
-      return '🔴Confirm Password is required!';
-    } else if (password != confirmPassword) {
-      return '🔴Password and Confirm Password must be same!';
-    }
-    return null;
-  }
-
-  static String? validateOTP(BuildContext context, String? otp) {
-    if (otp!.isEmpty || !AppRegExp.isOTPValid(otp)) {
-      return '🔴OTP is required!';
-    }
     return null;
   }
 }
