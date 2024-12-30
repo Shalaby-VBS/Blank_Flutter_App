@@ -1,3 +1,5 @@
+import 'package:blank_flutter_project/modules/login/data/models/login_response.dart';
+
 sealed class LoginState {}
 
 class LoginInitial extends LoginState {}
@@ -5,16 +7,16 @@ class LoginInitial extends LoginState {}
 class LoginLoading extends LoginState {}
 
 class LoginSuccess<T> extends LoginState {
-  final T data;
+  final LoginResponse data;
   LoginSuccess(this.data);
 }
 
-class LoginError<T> extends LoginState {
-  final T error;
-  LoginError(this.error);
+class LoginError extends LoginState {
+  final String message;
+  LoginError(this.message);
 }
 
-class PasswordVisibilityChangedState extends LoginState {
-  final bool isPasswordVisible;
-  PasswordVisibilityChangedState(this.isPasswordVisible);
+class PasswordVisibilityChanged extends LoginState {
+  final bool isVisible;
+  PasswordVisibilityChanged(this.isVisible);
 }

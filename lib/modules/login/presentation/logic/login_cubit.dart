@@ -36,9 +36,7 @@ class LoginCubit extends Cubit<LoginState> {
         await storeUserToken(data.token);
         emit(LoginSuccess(data));
       },
-      failure: (error) {
-        emit(LoginError(error));
-      },
+      failure: (error) => emit(LoginError(error.message.toString())),
     );
   }
 
@@ -49,7 +47,7 @@ class LoginCubit extends Cubit<LoginState> {
 
   void togglePasswordVisibility() {
     isPasswordVisible = !isPasswordVisible;
-    emit(PasswordVisibilityChangedState(isPasswordVisible));
+    emit(PasswordVisibilityChanged(isPasswordVisible));
   }
 
   @override

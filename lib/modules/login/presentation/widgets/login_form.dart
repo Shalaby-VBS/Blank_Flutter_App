@@ -45,8 +45,7 @@ class LoginForm extends StatelessWidget {
                 32.verticalSpace,
                 CustomButton(
                   text: 'Login',
-                  onPressed: () {},
-                  // => loginCubit.attemptLogin(),
+                  onPressed: () => loginCubit.attemptLogin(),
                   isLoading: state is LoginLoading,
                 ),
               ],
