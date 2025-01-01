@@ -8,7 +8,9 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: 'Login'),
+      appBar: CustomAppBar(
+        title: 'Login',
+      ),
       body: const LoginForm(),
     );
   }
