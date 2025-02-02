@@ -12,6 +12,7 @@ class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this._loginRepo) : super(LoginInitial());
 
   final formKey = GlobalKey<FormState>();
+  
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   bool isPasswordVisible = false;
