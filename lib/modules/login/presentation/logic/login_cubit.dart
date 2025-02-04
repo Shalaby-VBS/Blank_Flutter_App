@@ -14,8 +14,9 @@ class LoginCubit extends Cubit<LoginState> {
   final formKey = GlobalKey<FormState>();
 
   final emailController = TextEditingController();
-  
+
   final passwordController = TextEditingController();
+  
   bool isPasswordVisible = false;
 
   Future<void> attemptLogin() async {
