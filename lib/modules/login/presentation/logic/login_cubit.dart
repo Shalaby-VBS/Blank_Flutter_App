@@ -17,7 +17,7 @@ class LoginCubit extends Cubit<LoginState> {
   final passwordController = TextEditingController();
   bool isPasswordVisible = false;
 
-  Future<void> attemptLogin() async {
+  attemptLogin() async {
     if (!formKey.currentState!.validate()) {
       emit(LoginError('Please fill all fields correctly'));
       return;
@@ -25,21 +25,25 @@ class LoginCubit extends Cubit<LoginState> {
 
     emit(LoginLoading());
 
-    final response = await _loginRepo.login(
+    final loginResponse = await _loginRepo.login(
       LoginRequest(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       ),
     );
 
-    response.when(
-      success: (data) async {
-        await storeUserToken(data.token);
-        emit(LoginSuccess(data));
-      },
-      failure: (error) => emit(LoginError(error.message.toString())),
+    loginResponse.when(
+      success: _handleSuccessResponse,
+      failure: _handleFailureResponse,
     );
   }
+
+  _handleSuccessResponse(data) async {
+    await storeUserToken(data.token);
+    emit(LoginSuccess(data));
+  }
+
+  _handleFailureResponse(error) => emit(LoginError(error.message.toString()));
 
   Future<void> storeUserToken(String token) async {
     await SharedPrefHelper.setSecuredString(SharedPrefKeys.userToken, token);
