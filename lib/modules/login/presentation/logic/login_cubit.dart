@@ -19,6 +19,7 @@ class LoginCubit extends Cubit<LoginState> {
 
   attemptLogin() async {
     if (!formKey.currentState!.validate()) {
+      
       emit(LoginError('Please fill all fields correctly'));
       return;
     }
