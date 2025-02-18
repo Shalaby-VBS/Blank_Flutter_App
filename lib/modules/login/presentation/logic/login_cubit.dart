@@ -17,7 +17,6 @@ class LoginCubit extends Cubit<LoginState> {
   final emailController = TextEditingController();
 
   final passwordController = TextEditingController();
-  
   bool isPasswordVisible = false;
 
   attemptLogin() async {
