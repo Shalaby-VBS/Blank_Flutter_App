@@ -1,5 +1,5 @@
-import 'package:blank_flutter_project/core/widgets/custom_appbar.dart';
-import 'package:blank_flutter_project/modules/login/ui/widgets/login_form.dart';
+import 'package:blank_flutter_project/core/widgets/custom_app_bar.dart';
+import 'package:blank_flutter_project/modules/login/presentation/widgets/login_form.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -7,12 +7,11 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       appBar: CustomAppBar(
         title: 'Login',
-        showBackButton: false,
       ),
-      body: LoginForm(),
+      body: const LoginForm(),
     );
   }
 }

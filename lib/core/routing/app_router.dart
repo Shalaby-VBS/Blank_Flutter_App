@@ -1,11 +1,14 @@
-import 'package:blank_flutter_project/core/dependency_injection/di.dart';
+import 'package:blank_flutter_project/core/di/di.dart';
 import 'package:blank_flutter_project/core/routing/app_routes.dart';
-import 'package:blank_flutter_project/modules/login/logic/login_cubit.dart';
-import 'package:blank_flutter_project/modules/login/ui/login_screen.dart';
+import 'package:blank_flutter_project/modules/login/presentation/logic/login_cubit.dart';
+import 'package:blank_flutter_project/modules/login/presentation/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppRouter {
+  AppRouter._();
+  static final instance = AppRouter._();
+
   static final GlobalKey<NavigatorState> navigatorKey =
       GlobalKey<NavigatorState>();
   static BuildContext? currentContext = navigatorKey.currentContext;

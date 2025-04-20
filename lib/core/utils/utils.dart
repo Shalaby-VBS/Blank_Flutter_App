@@ -1,4 +1,3 @@
-import 'package:blank_flutter_project/core/helpers/spaces.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,7 +8,7 @@ class Utils {
   static closeKeyboard(BuildContext context) =>
       FocusScope.of(context).unfocus();
 
-  static showBottomSheets(
+  showBottomSheets(
     BuildContext context,
     Widget widget,
     bool? isDismissible,
@@ -41,7 +40,7 @@ class Utils {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       widget,
-                      Spaces.vertical(10),
+                      10.verticalSpace,
                     ],
                   ),
                 ),
@@ -51,7 +50,7 @@ class Utils {
         },
       );
 
-  static showDialogs(
+  showDialogs(
     BuildContext context,
     Widget widget,
     Widget actions,
@@ -78,7 +77,7 @@ class Utils {
     );
   }
 
-  static String formatTimeOfDay(TimeOfDay timeOfDay) {
+  String formatTimeOfDay(TimeOfDay timeOfDay) {
     final now = DateTime.now();
     final dateTime = DateTime(
         now.year, now.month, now.day, timeOfDay.hour, timeOfDay.minute);
@@ -86,7 +85,7 @@ class Utils {
     return formattedTime;
   }
 
-  static String getArabicMonthName(String monthNumber) {
+  String getArabicMonthName(String monthNumber) {
     DateTime date = DateTime(0, int.tryParse(monthNumber)!);
     String monthName = DateFormat('MMMM', 'ar').format(date);
 

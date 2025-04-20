@@ -1,15 +1,12 @@
-import 'package:blank_flutter_project/core/routing/app_routes.dart';
+import 'package:blank_flutter_project/core/routing/app_router.dart';
 import 'package:blank_flutter_project/core/themes/app_colors.dart';
-import 'package:blank_flutter_project/core/utils/utils.dart';
+import 'package:blank_flutter_project/modules/media_example/media_example_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'core/routing/app_router.dart';
-
 class MyApp extends StatelessWidget {
-  final AppRouter appRouter;
-  const MyApp({super.key, required this.appRouter});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,22 +21,20 @@ class MyApp extends StatelessWidget {
           primaryColor: AppColors.primary,
           scaffoldBackgroundColor: Colors.white,
         ),
-        navigatorKey: AppRouter.navigatorKey,
-        onGenerateRoute: appRouter.generateRoute,
-        initialRoute: AppRoutes.loginScreen,
         builder: (context, child) {
-          return GestureDetector(
-            onTap: () => Utils.closeKeyboard,
-            child: MediaQuery(
-              data: MediaQuery.of(context)
-                  .copyWith(textScaler: const TextScaler.linear(1.0)),
-              child: child!,
-            ),
+          return MediaQuery(
+            data: MediaQuery.of(context)
+                .copyWith(textScaler: const TextScaler.linear(1)),
+            child: child!,
           );
         },
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
+        onGenerateRoute: AppRouter.instance.generateRoute,
+        // initialRoute: AppRoutes.loginScreen,
+        navigatorKey: AppRouter.navigatorKey,
+        home: const MediaExampleScreen(),
       ),
     );
   }

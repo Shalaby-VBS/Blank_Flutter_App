@@ -1,9 +1,8 @@
-import 'package:blank_flutter_project/core/helpers/spaces.dart';
 import 'package:blank_flutter_project/core/helpers/validations.dart';
 import 'package:blank_flutter_project/core/widgets/custom_button.dart';
 import 'package:blank_flutter_project/core/widgets/custom_text_form_field.dart';
-import 'package:blank_flutter_project/modules/login/logic/login_cubit.dart';
-import 'package:blank_flutter_project/modules/login/logic/login_state.dart';
+import 'package:blank_flutter_project/modules/login/presentation/logic/login_cubit.dart';
+import 'package:blank_flutter_project/modules/login/presentation/logic/login_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,7 +29,7 @@ class LoginForm extends StatelessWidget {
                   validator: (value) => Validations.validateEmail(value),
                   textInputAction: TextInputAction.next,
                 ),
-                Spaces.vertical(16),
+                16.verticalSpace,
                 CustomTextFormField(
                   controller: loginCubit.passwordController,
                   labelText: 'Password',
@@ -43,10 +42,11 @@ class LoginForm extends StatelessWidget {
                   validator: (value) => Validations.validatePassword(value),
                   textInputAction: TextInputAction.done,
                 ),
-                Spaces.vertical(32),
+                32.verticalSpace,
                 CustomButton(
                   text: 'Login',
-                  onPressed: () => loginCubit.attemptLogin(),
+                  onPressed: () {},
+                  // => loginCubit.attemptLogin(),
                   isLoading: state is LoginLoading,
                 ),
               ],
