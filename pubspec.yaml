@@ -18,9 +18,6 @@ dependencies:
   easy_localization:
   # State management.
   flutter_bloc:
-  # Code generation for immutable classes (cubit & retrofit).
-  freezed:
-  freezed_annotation:
   # Dependency injection.
   get_it:
   # Classes and helper functions that support JSON code generation.
