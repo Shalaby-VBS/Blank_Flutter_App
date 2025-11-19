@@ -1,32 +1,56 @@
 import 'package:flutter/material.dart';
+import '../routing/app_router.dart';
 
 extension Navigations on BuildContext {
-  bool get canPop => ModalRoute.of(this)!.canPop;
+  NavigatorState? get _nav => AppRouter.navigatorKey.currentState;
 
-  Future<T?> pushNamed<T>(String routeName, {Object? arguments}) {
-    return Navigator.of(this).pushNamed<T?>(routeName, arguments: arguments);
-  }
+  bool get canPop => _nav?.canPop() ?? false;
 
-  Future<T?> popAndPushNamed<T>(String routeName, {Object? arguments}) {
-    return Navigator.of(this).popAndPushNamed(routeName, arguments: arguments);
-  }
+  Future<T?> push<T>(
+    String routeName, {
+    Object? arguments,
+  }) async =>
+      _nav?.pushNamed<T>(
+        routeName,
+        arguments: arguments,
+      );
 
-  Future<dynamic> pushReplacementNamed(String routeName, {Object? arguments}) {
-    return Navigator.of(this)
-        .pushReplacementNamed(routeName, arguments: arguments);
-  }
+  Future<T?> pushAndRemoveAll<T>(
+    String routeName, {
+    Object? arguments,
+  }) async =>
+      _nav?.pushNamedAndRemoveUntil<T>(
+        routeName,
+        (_) => false,
+        arguments: arguments,
+      );
 
-  Future<dynamic> pushNamedAndRemoveUntil(String routeName,
-      {Object? arguments, required RoutePredicate predicate}) {
-    return Navigator.of(this)
-        .pushNamedAndRemoveUntil(routeName, predicate, arguments: arguments);
-  }
+  Future<T?> pushAndRemoveUntil<T>(
+    String routeName,
+    bool Function(Route<dynamic>) predicate, {
+    Object? arguments,
+  }) async =>
+      _nav?.pushNamedAndRemoveUntil<T>(
+        routeName,
+        predicate,
+        arguments: arguments,
+      );
+
+  Future<T?> pushReplacement<T extends Object?>(
+    String routeName, {
+    Object? arguments,
+  }) async =>
+      _nav?.pushReplacementNamed<T, Object?>(
+        routeName,
+        arguments: arguments,
+      );
 
   void pop<T>([T? result]) {
-    Navigator.of(this).pop<T>(
-      result,
-    );
+    if (_nav?.canPop() ?? false) {
+      _nav?.pop<T>(result);
+    }
   }
 
-  Object? get argument => ModalRoute.of(this)?.settings.arguments;
+  void popUntil(String routeName) =>
+      _nav?.popUntil(ModalRoute.withName(routeName));
 }

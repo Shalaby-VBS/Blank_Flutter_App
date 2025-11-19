@@ -1,37 +1,27 @@
-import 'package:blank_flutter_project/core/networking/api_error_model.dart';
+import 'api_error_model.dart';
 
 abstract class ApiResult<T> {
-  factory ApiResult.success(T data) = _Success<T>;
-  factory ApiResult.failure(ApiErrorModel error) = _Failure<T>;
+  const ApiResult();
 
   R when<R>({
     required R Function(T data) success,
     required R Function(ApiErrorModel error) failure,
-  });
+  }) {
+    if (this is ApiResultSuccess<T>) {
+      return success((this as ApiResultSuccess<T>).data);
+    } else if (this is ApiResultFailure<T>) {
+      return failure((this as ApiResultFailure<T>).apiErrorModel);
+    }
+    throw Exception('Unknown subtype of ApiResult');
+  }
 }
 
-class _Success<T> implements ApiResult<T> {
+class ApiResultSuccess<T> extends ApiResult<T> {
   final T data;
-  _Success(this.data);
-
-  @override
-  R when<R>({
-    required R Function(T data) success,
-    required R Function(ApiErrorModel error) failure,
-  }) {
-    return success(data);
-  }
+  const ApiResultSuccess(this.data);
 }
 
-class _Failure<T> implements ApiResult<T> {
-  final ApiErrorModel error;
-  _Failure(this.error);
-
-  @override
-  R when<R>({
-    required R Function(T data) success,
-    required R Function(ApiErrorModel error) failure,
-  }) {
-    return failure(error);
-  }
+class ApiResultFailure<T> extends ApiResult<T> {
+  final ApiErrorModel apiErrorModel;
+  const ApiResultFailure(this.apiErrorModel);
 }

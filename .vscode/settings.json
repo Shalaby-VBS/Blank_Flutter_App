@@ -1,6 +1,6 @@
 {
     "cSpell.words": [
-        "screenutil",
         "unfocus"
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive",
 }

@@ -11,7 +11,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.8
   # Splashing
   flutter_native_splash:
   # Localization
@@ -20,9 +19,6 @@ dependencies:
   flutter_bloc:
   # Dependency injection.
   get_it:
-  # Classes and helper functions that support JSON code generation.
-  json_annotation:
-  json_serializable:
   # Networking
   dio:
   retrofit:
@@ -30,24 +26,15 @@ dependencies:
   pretty_dio_logger:
   flutter_secure_storage:
   # UI
-  flutter_screenutil:
   cached_network_image:
   flutter_svg:
-  lottie:
   shimmer:
   # Data Storage
-  shared_preferences: ^2.2.2
-  # Media Handling
-  video_player: ^2.7.0
-  photo_view: ^0.14.0
-  syncfusion_flutter_pdfviewer:
-  path: ^1.8.3
-  path_provider: ^2.1.4
-  image_gallery_saver: ^2.0.3
-  permission_handler: ^11.0.1
-  # Test
-  mocktail: ^0.3.0
-  bloc_test: ^9.0.0
+  shared_preferences:
+  permission_handler:
+  device_info_plus:
+  # Animations & Effects
+  flutter_animate:
 
 dev_dependencies:
   flutter_test:

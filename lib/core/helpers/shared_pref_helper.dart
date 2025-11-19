@@ -31,22 +31,6 @@ class SharedPrefHelper {
     } else {
       throw ArgumentError('Unsupported value type');
     }
-    // switch (value.runtimeType) {
-    //   case String:
-    //     await sharedPreferences.setString(key, value);
-    //     break;
-    //   case int:
-    //     await sharedPreferences.setInt(key, value);
-    //     break;
-    //   case bool:
-    //     await sharedPreferences.setBool(key, value);
-    //     break;
-    //   case double:
-    //     await sharedPreferences.setDouble(key, value);
-    //     break;
-    //   default:
-    //     return null;
-    // }
   }
 
   static getBool(String key) async {

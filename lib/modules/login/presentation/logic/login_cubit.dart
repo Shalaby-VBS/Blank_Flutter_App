@@ -1,5 +1,5 @@
-import 'package:blank_flutter_project/core/constants/shared_pref_keys.dart';
-import 'package:blank_flutter_project/core/helpers/shared_pref_helper.dart';
+import 'package:blank_flutter_project/core/helpers/token_manager.dart';
+import 'package:blank_flutter_project/core/states/base_state.dart';
 import 'package:blank_flutter_project/modules/login/presentation/logic/login_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,24 +9,26 @@ import 'package:blank_flutter_project/core/networking/dio_factory.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   final LoginRepo _loginRepo;
-  LoginCubit(this._loginRepo) : super(LoginInitial());
+  LoginCubit(this._loginRepo) : super(const LoginState(status: Status.initial));
 
-  // Variables:
+  // Variables
   final formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  bool isPasswordVisible = false;
 
   attemptLogin() async {
     if (!formKey.currentState!.validate()) {
-      emit(LoginError('Please fill all fields correctly'));
+      emit(const LoginState(
+        status: Status.failure,
+        message: 'Please fill all fields correctly',
+      ));
       return;
     }
 
-    emit(LoginLoading());
+    emit(const LoginState(status: Status.loading));
 
     final loginResponse = await _loginRepo.login(
-      LoginRequest(
+      loginRequest: LoginRequest(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       ),
@@ -40,19 +42,24 @@ class LoginCubit extends Cubit<LoginState> {
 
   _handleSuccessResponse(data) async {
     await storeUserToken(data.token);
-    emit(LoginSuccess(data));
+    emit(LoginState(
+      status: Status.success,
+      data: data,
+    ));
   }
 
-  _handleFailureResponse(error) => emit(LoginError(error.message.toString()));
+  _handleFailureResponse(error) => emit(LoginState(
+        status: Status.failure,
+        message: error.message.toString(),
+      ));
 
   Future<void> storeUserToken(String token) async {
-    await SharedPrefHelper.setSecuredString(SharedPrefKeys.userToken, token);
+    await TokenManager.saveToken(token);
     DioFactory.setTokenIntoHeaderAfterLogin(token);
   }
 
   void togglePasswordVisibility() {
-    isPasswordVisible = !isPasswordVisible;
-    emit(PasswordVisibilityChanged(isPasswordVisible));
+    emit(state.copyWith(isPasswordVisible: !state.isPasswordVisible));
   }
 
   @override

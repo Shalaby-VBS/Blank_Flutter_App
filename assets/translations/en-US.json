@@ -2,5 +2,22 @@
   "arabic" : "Arabic",
   "english" : "English",
   "language" : "Language",
-  "home_screen" : "Home Screen"
+  "home_screen" : "Home Screen",
+  "no_data" : "No data",
+  "login" : "Login",
+  "email" : "Email",
+  "password" : "Password",
+  "login_success" : "Login successful!",
+  "login_error" : "Login failed. Please try again.",
+  "app_name" : "TransportEase",
+  "tagline" : "Your Journey, Simplified",
+  "skip" : "Skip",
+  "next" : "Next",
+  "get_started" : "Get Started",
+  "onboarding_title_1" : "Book Your Ride",
+  "onboarding_desc_1" : "Choose from multiple transportation options and book your ride in seconds",
+  "onboarding_title_2" : "Track in Real-Time",
+  "onboarding_desc_2" : "Know exactly where your ride is with live tracking and estimated arrival times",
+  "onboarding_title_3" : "Easy Payment",
+  "onboarding_desc_3" : "Pay securely with multiple payment options. Cashless and hassle-free"
 }

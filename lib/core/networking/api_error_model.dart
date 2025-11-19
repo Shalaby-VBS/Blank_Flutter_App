@@ -1,11 +1,6 @@
-import 'package:json_annotation/json_annotation.dart';
-part 'api_error_model.g.dart';
-
-@JsonSerializable()
 class ApiErrorModel {
   final String? message;
   final int? code;
-  @JsonKey(name: 'data')
   final dynamic errors;
 
   ApiErrorModel({
@@ -14,27 +9,35 @@ class ApiErrorModel {
     this.errors,
   });
 
-  factory ApiErrorModel.fromJson(Map<String, dynamic> json) =>
-      _$ApiErrorModelFromJson(json);
+  factory ApiErrorModel.fromJson(Map<String, dynamic> json) {
+    return ApiErrorModel(
+      message: json['message'] as String?,
+      code: json['code'] as int?,
+      errors: json['data'] ?? json['errors'],
+    );
+  }
 
-  Map<String, dynamic> toJson() => _$ApiErrorModelToJson(this);
+  Map<String, dynamic> toJson() {
+    return {
+      'message': message,
+      'code': code,
+      // ignore: unrelated_type_equality_checks
+      errors is Map<String, dynamic> == 'data' ? errors : 'errors': errors,
+    };
+  }
 
   /// Returns a String containing all the error messages
   String getAllErrorMessages() {
-    if (errors == null || errors is List && (errors as List).isEmpty) {
-      return message ?? "Unknown Error occurred";
-    }
+    if (errors == null) return message ?? "Unknown Error occurred";
 
-    if (errors is Map<String, dynamic>) {
-      final errorMessage =
-          (errors as Map<String, dynamic>).entries.map((entry) {
-        final value = entry.value;
-        return "${value.join(',')}";
-      }).join('\n');
-
-      return errorMessage;
+    if (errors is String) {
+      return errors;
+    } else if (errors is Map<String, dynamic>) {
+      return errors.entries
+          .map((e) => e.value is List ? e.value.join(',') : e.value.toString())
+          .join('\n');
     } else if (errors is List) {
-      return (errors as List).join('\n');
+      return errors.join('\n');
     }
 
     return message ?? "Unknown Error occurred";

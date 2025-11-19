@@ -1,14 +1,26 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'package:blank_flutter_project/core/config/flavor_config.dart';
+import 'package:blank_flutter_project/core/helpers/responsive_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../helpers/bloc_observer_checker.dart';
 
 class Utils {
   Utils._();
 
-  static closeKeyboard(BuildContext context) =>
-      FocusScope.of(context).unfocus();
+  /// Cached once for optimal performance - no repeated checks
+  static final bool _enableLogs = FlavorConfig.isDev;
 
-  showBottomSheets(
+  static void printLog(String message) {
+    if (!_enableLogs) return;
+    debugPrint(message);
+  }
+
+  static unfocus(BuildContext context) => FocusScope.of(context).unfocus();
+
+  static void setBlocObserver() => Bloc.observer = const BlocObserverChecker();
+
+  showDefaultBottomSheet(
     BuildContext context,
     Widget widget,
     bool? isDismissible,
@@ -50,7 +62,7 @@ class Utils {
         },
       );
 
-  showDialogs(
+  showDefaultDialog(
     BuildContext context,
     Widget widget,
     Widget actions,
@@ -75,20 +87,5 @@ class Utils {
         );
       },
     );
-  }
-
-  String formatTimeOfDay(TimeOfDay timeOfDay) {
-    final now = DateTime.now();
-    final dateTime = DateTime(
-        now.year, now.month, now.day, timeOfDay.hour, timeOfDay.minute);
-    final formattedTime = DateFormat('HH:mm:ss').format(dateTime);
-    return formattedTime;
-  }
-
-  String getArabicMonthName(String monthNumber) {
-    DateTime date = DateTime(0, int.tryParse(monthNumber)!);
-    String monthName = DateFormat('MMMM', 'ar').format(date);
-
-    return monthName;
   }
 }

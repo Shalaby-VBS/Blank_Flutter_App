@@ -1,8 +1,16 @@
 import 'package:blank_flutter_project/core/extensions/navigations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../themes/text_styles.dart';
 
 class CustomAppBar extends AppBar {
+  /// Parameters:
+  /// - [title]: The title to display - can be String or Widget
+  /// - [context]: BuildContext for navigation awareness (required for auto back button)
+  /// - [leading]: Custom leading widget (overrides automatic back button)
+  /// - [automaticallyImplyLeading]: Whether to show back button automatically (default: true)
+  /// - [titleTextStyle]: Custom text style for string titles (falls back to TextStyles.size20Neutral1000W700)
+  /// - All other parameters are inherited from AppBar
   CustomAppBar({
     super.key,
     dynamic title,
@@ -14,7 +22,8 @@ class CustomAppBar extends AppBar {
     super.bottom,
     super.elevation = 0,
     super.centerTitle,
-    super.backgroundColor,
+    super.backgroundColor = Colors.white,
+    super.surfaceTintColor = Colors.transparent,
     super.foregroundColor,
     super.shape,
     super.toolbarHeight,
@@ -36,20 +45,13 @@ class CustomAppBar extends AppBar {
     return const BackButton();
   }
 
-  static Widget? _buildTitle(
-    dynamic title,
-    TextStyle? titleTextStyle,
-  ) {
+  static Widget? _buildTitle(dynamic title, TextStyle? titleTextStyle) {
     if (title == null) return null;
 
     if (title is String) {
       return Text(
         title,
-        style: titleTextStyle ??
-            TextStyle(
-              fontSize: 16.sp,
-              color: Colors.black,
-            ),
+        style: titleTextStyle ?? TextStyles.size16Primary800W700,
       );
     }
 

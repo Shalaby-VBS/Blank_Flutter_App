@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import '../../modules/login/data/remote/login_api_service.dart';
+import '../../modules/login/data/repos/login_repo.dart';
 import '../networking/dio_factory.dart';
 
 final getIt = GetIt.instance;
@@ -22,8 +24,8 @@ Future<void> setupDI() async {
   getIt.registerLazySingleton<Dio>(() => dio);
 
   // Login Module
-  // registerServiceAndRepo<LoginApiService, LoginRepo>(
-  //   apiService: (dio) => LoginApiService(dio),
-  //   repo: (service) => LoginRepo(service),
-  // );
+  registerServiceAndRepo<LoginApiService, LoginRepo>(
+    apiService: (dio) => LoginApiService(dio),
+    repo: (service) => LoginRepo(service),
+  );
 }

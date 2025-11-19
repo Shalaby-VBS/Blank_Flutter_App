@@ -1,6 +1,6 @@
+import 'package:blank_flutter_project/core/helpers/responsive_helper.dart';
 import 'package:blank_flutter_project/core/themes/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final String labelText;
@@ -38,7 +38,7 @@ class CustomTextFormField extends StatelessWidget {
         labelStyle: TextStyle(
           color: WidgetStateColor.resolveWith(
             (states) => states.contains(WidgetState.focused)
-                ? AppColors.primary
+                ? AppColors.primary100
                 : Colors.grey.shade700,
           ),
         ),
@@ -60,7 +60,7 @@ class CustomTextFormField extends StatelessWidget {
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: AppColors.primary,
+            color: AppColors.primary100,
             width: 1.5.sp,
           ),
           borderRadius: BorderRadius.circular(8.r),
@@ -68,7 +68,7 @@ class CustomTextFormField extends StatelessWidget {
         prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
         prefixIconColor: WidgetStateColor.resolveWith(
           (states) => states.contains(WidgetState.focused)
-              ? AppColors.primary
+              ? AppColors.primary100
               : Colors.grey.shade700,
         ),
         suffixIcon: suffixIcon != null

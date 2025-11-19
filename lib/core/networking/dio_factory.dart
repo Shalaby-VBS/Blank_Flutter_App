@@ -1,5 +1,4 @@
-import 'package:blank_flutter_project/core/constants/shared_pref_keys.dart';
-import 'package:blank_flutter_project/core/helpers/shared_pref_helper.dart';
+import 'package:blank_flutter_project/core/helpers/token_manager.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
@@ -24,27 +23,21 @@ class DioFactory {
     }
   }
 
-  static void addDioHeaders() async {
-    dio?.options.headers = {
-      'Accept': 'application/json',
-      'Authorization':
-          'Bearer ${await SharedPrefHelper.getSecuredString(SharedPrefKeys.userToken)}',
-    };
-  }
+  static void addDioHeaders() async => dio?.options.headers = {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ${await TokenManager.getToken()}',
+      };
 
-  static void setTokenIntoHeaderAfterLogin(String token) {
-    dio?.options.headers = {
-      'Authorization': 'Bearer $token',
-    };
-  }
+  static void setTokenIntoHeaderAfterLogin(String token) =>
+      dio?.options.headers = {
+        'Authorization': 'Bearer $token',
+      };
 
-  static void addDioInterceptor() {
-    dio?.interceptors.add(
-      PrettyDioLogger(
-        requestBody: true,
-        requestHeader: true,
-        responseHeader: true,
-      ),
-    );
-  }
+  static void addDioInterceptor() => dio?.interceptors.add(
+        PrettyDioLogger(
+          requestBody: true,
+          requestHeader: true,
+          responseHeader: true,
+        ),
+      );
 }

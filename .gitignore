@@ -44,3 +44,6 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 .qodo
+
+# Claude Code - protect sensitive tokens
+.claude/settings.local.json
